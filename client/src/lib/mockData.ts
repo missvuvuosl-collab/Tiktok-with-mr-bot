@@ -1,4 +1,4 @@
-import type { Video } from "@shared/schema";
+import type { Video, Comment, UserProfile } from "@shared/schema";
 import avatar1 from "@assets/generated_images/Female_creator_profile_avatar_e8edf2bd.png";
 import avatar2 from "@assets/generated_images/Male_creator_profile_avatar_b4810fe5.png";
 import avatar3 from "@assets/generated_images/Female_creator_avatar_casual_1078f4ce.png";
@@ -71,5 +71,93 @@ export const mockVideos: Video[] = [
     comments: 1456,
     shares: 923,
     isLiked: false,
+  },
+];
+
+//todo: remove mock functionality
+export const mockComments: Comment[] = [
+  {
+    id: "c1",
+    videoId: "1",
+    userId: "user2",
+    username: "techlover",
+    avatarUrl: avatar2,
+    text: "Incroyable ! J'adore ton style 🔥",
+    likes: 45,
+    createdAt: new Date("2024-11-06T10:30:00"),
+  },
+  {
+    id: "c2",
+    videoId: "1",
+    userId: "user3",
+    username: "lifestylevibe",
+    avatarUrl: avatar3,
+    text: "Tellement inspirant ! Continue comme ça 💯",
+    likes: 23,
+    createdAt: new Date("2024-11-06T11:15:00"),
+  },
+  {
+    id: "c3",
+    videoId: "1",
+    userId: "user5",
+    username: "fitnessqueen",
+    avatarUrl: avatar5,
+    text: "Je veux apprendre cette technique ! Tu fais des tutos ?",
+    likes: 12,
+    createdAt: new Date("2024-11-06T12:00:00"),
+  },
+];
+
+//todo: remove mock functionality
+export const mockUserProfiles: UserProfile[] = [
+  {
+    userId: "user1",
+    username: "creativemind",
+    avatarUrl: avatar1,
+    bio: "Artiste digitale 🎨 | Créatrice de contenu | Paris 🇫🇷",
+    followersCount: 12500,
+    followingCount: 247,
+    likesCount: 156700,
+    videosCount: 43,
+  },
+  {
+    userId: "user2",
+    username: "techlover",
+    avatarUrl: avatar2,
+    bio: "Tech enthusiast | Gadgets & Reviews | DM pour collabs 📱",
+    followersCount: 45200,
+    followingCount: 189,
+    likesCount: 892300,
+    videosCount: 128,
+  },
+  {
+    userId: "user3",
+    username: "lifestylevibe",
+    avatarUrl: avatar3,
+    bio: "Lifestyle & Wellness 🌿 | Partage de bonnes vibes | Contact: lifestyle@email.com",
+    followersCount: 28900,
+    followingCount: 412,
+    likesCount: 445600,
+    videosCount: 87,
+  },
+  {
+    userId: "user4",
+    username: "artguru",
+    avatarUrl: avatar4,
+    bio: "Designer & Artist 🎭 | Inspirations quotidiennes | Cours en ligne 👇",
+    followersCount: 67800,
+    followingCount: 156,
+    likesCount: 1234500,
+    videosCount: 215,
+  },
+  {
+    userId: "user5",
+    username: "fitnessqueen",
+    avatarUrl: avatar5,
+    bio: "Coach sportive 💪 | Transformations | Programme perso disponible",
+    followersCount: 89300,
+    followingCount: 93,
+    likesCount: 2156800,
+    videosCount: 342,
   },
 ];

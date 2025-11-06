@@ -2,14 +2,17 @@ import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 import VideoInfo from "./VideoInfo";
 import InteractionButton from "./InteractionButton";
+import CommentSheet from "./CommentSheet";
 import { Heart, MessageCircle, Share2, MoreHorizontal } from "lucide-react";
-import type { Video } from "@shared/schema";
+import type { Video, Comment } from "@shared/schema";
 
 interface VideoCardProps {
   video: Video;
   isActive: boolean;
+  comments: Comment[];
   onLike: (videoId: string) => void;
-  onComment: (videoId: string) => void;
+  onAddComment: (videoId: string, text: string) => void;
+  onLikeComment: (commentId: string) => void;
   onShare: (videoId: string) => void;
   onProfileClick: (userId: string) => void;
 }
@@ -17,13 +20,16 @@ interface VideoCardProps {
 export default function VideoCard({ 
   video, 
   isActive, 
+  comments,
   onLike, 
-  onComment, 
+  onAddComment,
+  onLikeComment,
   onShare,
   onProfileClick 
 }: VideoCardProps) {
   const [localLiked, setLocalLiked] = useState(video.isLiked);
   const [localLikeCount, setLocalLikeCount] = useState(video.likes);
+  const [isCommentSheetOpen, setIsCommentSheetOpen] = useState(false);
 
   const handleLike = () => {
     setLocalLiked(!localLiked);
@@ -39,50 +45,67 @@ export default function VideoCard({
     }
   };
 
-  return (
-    <div className="relative w-full h-screen snap-start snap-always" data-testid={`video-card-${video.id}`}>
-      <VideoPlayer
-        videoUrl={video.videoUrl}
-        isActive={isActive}
-        onVideoClick={() => {}}
-        onDoubleClick={handleDoubleClick}
-      />
-      
-      <VideoInfo
-        username={video.username}
-        avatarUrl={video.avatarUrl}
-        description={video.description}
-        soundName={video.soundName}
-        onAvatarClick={() => onProfileClick(video.userId)}
-      />
+  const handleAddComment = (text: string) => {
+    onAddComment(video.id, text);
+  };
 
-      <div className="absolute right-4 bottom-24 space-y-6">
-        <InteractionButton
-          icon={Heart}
-          count={localLikeCount}
-          isActive={localLiked}
-          onClick={handleLike}
-          testId="button-like"
+  const videoCommentCount = (comments || []).filter(c => c.videoId === video.id).length;
+
+  return (
+    <>
+      <div className="relative w-full h-screen snap-start snap-always" data-testid={`video-card-${video.id}`}>
+        <VideoPlayer
+          videoUrl={video.videoUrl}
+          isActive={isActive}
+          onVideoClick={() => {}}
+          onDoubleClick={handleDoubleClick}
         />
-        <InteractionButton
-          icon={MessageCircle}
-          count={video.comments}
-          onClick={() => onComment(video.id)}
-          testId="button-comment"
+        
+        <VideoInfo
+          username={video.username}
+          avatarUrl={video.avatarUrl}
+          description={video.description}
+          soundName={video.soundName}
+          onAvatarClick={() => onProfileClick(video.userId)}
         />
-        <InteractionButton
-          icon={Share2}
-          count={video.shares}
-          onClick={() => onShare(video.id)}
-          testId="button-share"
-        />
-        <InteractionButton
-          icon={MoreHorizontal}
-          count={0}
-          onClick={() => console.log("More options")}
-          testId="button-more"
-        />
+
+        <div className="absolute right-4 bottom-24 space-y-6">
+          <InteractionButton
+            icon={Heart}
+            count={localLikeCount}
+            isActive={localLiked}
+            onClick={handleLike}
+            testId="button-like"
+          />
+          <InteractionButton
+            icon={MessageCircle}
+            count={videoCommentCount}
+            onClick={() => setIsCommentSheetOpen(true)}
+            testId="button-comment"
+          />
+          <InteractionButton
+            icon={Share2}
+            count={video.shares}
+            onClick={() => onShare(video.id)}
+            testId="button-share"
+          />
+          <InteractionButton
+            icon={MoreHorizontal}
+            count={0}
+            onClick={() => console.log("More options")}
+            testId="button-more"
+          />
+        </div>
       </div>
-    </div>
+
+      <CommentSheet
+        isOpen={isCommentSheetOpen}
+        onClose={() => setIsCommentSheetOpen(false)}
+        videoId={video.id}
+        comments={comments}
+        onAddComment={handleAddComment}
+        onLikeComment={onLikeComment}
+      />
+    </>
   );
 }
