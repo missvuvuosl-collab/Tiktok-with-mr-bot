@@ -3,7 +3,7 @@ import VideoPlayer from "./VideoPlayer";
 import VideoInfo from "./VideoInfo";
 import InteractionButton from "./InteractionButton";
 import CommentSheet from "./CommentSheet";
-import { Heart, MessageCircle, Share2, MoreHorizontal } from "lucide-react";
+import { Heart, MessageCircle, Share2, MoreHorizontal, Users } from "lucide-react";
 import type { Video, Comment } from "@shared/schema";
 
 interface VideoCardProps {
@@ -60,6 +60,19 @@ export default function VideoCard({
           onVideoClick={() => {}}
           onDoubleClick={handleDoubleClick}
         />
+        
+        {video.isLive && (
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-red-600 text-white px-3 py-1.5 rounded-md font-semibold animate-pulse">
+              <div className="w-2 h-2 bg-white rounded-full" />
+              <span className="text-sm">LIVE</span>
+            </div>
+            <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-md">
+              <Users className="w-4 h-4" />
+              <span className="text-sm font-medium">{(video.viewersCount || 0).toLocaleString()}</span>
+            </div>
+          </div>
+        )}
         
         <VideoInfo
           username={video.username}

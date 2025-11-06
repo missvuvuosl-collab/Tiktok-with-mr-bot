@@ -21,6 +21,8 @@ export const videos = pgTable("videos", {
   comments: integer("comments").notNull().default(0),
   shares: integer("shares").notNull().default(0),
   isLiked: boolean("is_liked").notNull().default(false),
+  isLive: boolean("is_live").notNull().default(false),
+  viewersCount: integer("viewers_count").notNull().default(0),
 });
 
 export const comments = pgTable("comments", {
