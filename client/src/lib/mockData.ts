@@ -468,6 +468,88 @@ export const mockComments: Comment[] = [
   },
 ];
 
+export interface LiveMessage {
+  id: string;
+  userId: string;
+  username: string;
+  avatarUrl: string;
+  text: string;
+  timestamp: Date;
+}
+
+export interface LiveGift {
+  id: string;
+  userId: string;
+  username: string;
+  giftName: string;
+  giftValue: number;
+  timestamp: Date;
+}
+
+//todo: remove mock functionality
+export const mockLiveMessages: LiveMessage[] = [
+  {
+    id: "lm1",
+    userId: "user2",
+    username: "techlover",
+    avatarUrl: avatar2,
+    text: "Salut tout le monde ! 👋",
+    timestamp: new Date(),
+  },
+  {
+    id: "lm2",
+    userId: "user3",
+    username: "lifestylevibe",
+    avatarUrl: avatar3,
+    text: "Super live ! 🔥",
+    timestamp: new Date(),
+  },
+  {
+    id: "lm3",
+    userId: "user5",
+    username: "fitnessqueen",
+    avatarUrl: avatar5,
+    text: "J'adore ce que tu fais !",
+    timestamp: new Date(),
+  },
+  {
+    id: "lm4",
+    userId: "user6",
+    username: "chef_marcus",
+    avatarUrl: avatar2,
+    text: "Incroyable ! Continue comme ça",
+    timestamp: new Date(),
+  },
+  {
+    id: "lm5",
+    userId: "user7",
+    username: "marie_voyage",
+    avatarUrl: avatar1,
+    text: "Trop bien ! 😍",
+    timestamp: new Date(),
+  },
+];
+
+//todo: remove mock functionality
+export const mockLiveGifts: LiveGift[] = [
+  {
+    id: "lg1",
+    userId: "user2",
+    username: "techlover",
+    giftName: "🌹 Rose",
+    giftValue: 1,
+    timestamp: new Date(),
+  },
+  {
+    id: "lg2",
+    userId: "user10",
+    username: "gaming_pro",
+    giftName: "💎 Diamant",
+    giftValue: 50,
+    timestamp: new Date(),
+  },
+];
+
 //todo: remove mock functionality
 export const mockUserProfiles: UserProfile[] = [
   {
@@ -519,5 +601,75 @@ export const mockUserProfiles: UserProfile[] = [
     followingCount: 93,
     likesCount: 2156800,
     videosCount: 342,
+  },
+  {
+    userId: "user6",
+    username: "chef_marcus",
+    avatarUrl: avatar2,
+    bio: "Chef cuisinier 👨‍🍳 | Recettes faciles | Lyon",
+    followersCount: 156200,
+    followingCount: 234,
+    likesCount: 3456700,
+    videosCount: 189,
+  },
+  {
+    userId: "user7",
+    username: "marie_voyage",
+    avatarUrl: avatar1,
+    bio: "Travel blogger ✈️ | 47 pays visités | Next stop: Tokyo",
+    followersCount: 234500,
+    followingCount: 567,
+    likesCount: 5678900,
+    videosCount: 423,
+  },
+  {
+    userId: "user8",
+    username: "dj_soundwave",
+    avatarUrl: avatar4,
+    bio: "DJ & Producer 🎧 | House Music | Live sets every Friday",
+    followersCount: 98700,
+    followingCount: 145,
+    likesCount: 2345600,
+    videosCount: 267,
+  },
+  {
+    userId: "user9",
+    username: "yoga_zen",
+    avatarUrl: avatar3,
+    bio: "Professeur de yoga 🧘‍♀️ | Méditation | Namaste 🙏",
+    followersCount: 67800,
+    followingCount: 289,
+    likesCount: 1234500,
+    videosCount: 178,
+  },
+  {
+    userId: "user10",
+    username: "gaming_pro",
+    avatarUrl: avatar2,
+    bio: "Pro Gamer 🎮 | Streaming daily | Team captain",
+    followersCount: 345600,
+    followingCount: 432,
+    likesCount: 8901200,
+    videosCount: 892,
+  },
+  {
+    userId: "user11",
+    username: "fashion_emma",
+    avatarUrl: avatar5,
+    bio: "Fashion & Style 👗 | Paris Fashion Week | Collabs open",
+    followersCount: 189300,
+    followingCount: 678,
+    likesCount: 4567800,
+    videosCount: 534,
+  },
+  {
+    userId: "user12",
+    username: "comedien_alex",
+    avatarUrl: avatar4,
+    bio: "Humoriste 😂 | Stand-up | Making people laugh since 2015",
+    followersCount: 278900,
+    followingCount: 345,
+    likesCount: 6789100,
+    videosCount: 612,
   },
 ];
